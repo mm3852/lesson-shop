@@ -8,20 +8,17 @@
 </head>
 <body>
   <div id="app">
-  <p> £20</p>
-  
-  <p v-if="Aval >=0">{{ "Avaliable Items " + Aval }} </p>
-  <p v-else>No more avaliable items</p> 
-  <button v-on:click="Aval--">checkout</button>
 
-  <p v-if="NAval >=0">{{ "Avaliable Items " + NAval }} </p>
-  <p v-else>No more avaliable items</p> 
-  <button v-on:click="NAval--">checkout</button>
+  <div v-for="x in lessions">
+    <h1>{{x.subject}}</h1>
+    <p>{{x.location}}</p>
+    <p>{{x.price}}</p>
+    <p v-if="x.Aval >0">{{ "Spaces:  " + x.Aval }} </p>
+    <p v-else>No more avaliable items</p> 
+    <button v-on:click="x.Aval--">Add to cart</button>
+  </div>
+  <button v-on:click="">Checkout</button>
 
-  
-  <p v-if="TAval >=0">{{ "Avaliable Items " + TAval }} </p>
-  <p v-else>No more avaliable items</p> 
-  <button v-on:click="TAval--">checkout</button>
   </div>
 
 
@@ -30,7 +27,9 @@
     const app = Vue.createApp ({
       data() {
         return {
-          Aval : 5 ,  NAval : 5 , TAval : 5
+          lessions: [	
+{subject: "Maths", location: "London", price: "£20", Aval : 5}, {subject: "English", location: "London", price: "£20", Aval : 5}
+      ]
         }
       }
 
