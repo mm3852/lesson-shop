@@ -19,7 +19,7 @@
       </div>
       <button v-on:click="console.log()">Checkout</button>
 
-      <div v-for="(x, index) in lessions">
+      <div v-show="showDiv(index)" v-for="(x, index) in lessions">
         <h1>{{x.subject}}</h1>
         <p>{{x.location}}</p>
         <p>{{x.price}}</p>
@@ -48,6 +48,11 @@
           valueIncrement(index) {
             if (this.lessions[index].Aval < 5) {
               this.lessions[index].Aval++;
+            }
+          },
+          showDiv(index) {
+            if (this.lessions[index].Aval < 5) {
+              return true;
             }
           },
         },
