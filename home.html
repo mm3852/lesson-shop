@@ -8,22 +8,28 @@
   </head>
   <body>
     <div id="app">
-      <div v-for="(x, index) in lessons">
-        <h1>{{x.subject}}</h1>
-        <p>{{x.location}}</p>
-        <p>{{x.price}}</p>
-        <p v-if="x.Aval >0">{{ "Spaces: " + x.Aval }}</p>
-        <p v-else>No more avaliable items</p>
-        <button v-on:click="valueDecrement(index)">Add to cart</button>
+      <button v-on:click="pageToggle()">
+        {{ showCartPage ? "Go to Lessons" : "Go to cart"}}
+      </button>
+      <div v-show="!showCartPage">
+        <div v-for="(x, index) in lessons">
+          <h1>{{x.subject}}</h1>
+          <p>{{x.location}}</p>
+          <p>{{x.price}}</p>
+          <p v-if="x.Aval >0">{{ "Spaces: " + x.Aval }}</p>
+          <p v-else>No more avaliable items</p>
+          <button v-on:click="valueDecrement(index)">Add to cart</button>
+        </div>
       </div>
-      <button v-on:click="console.log()">Checkout</button>
 
-      <div v-show="showDiv(index)" v-for="(x, index) in lessons">
-        <h1>{{x.subject}}</h1>
-        <p>{{x.location}}</p>
-        <p>{{x.price}}</p>
-        <p>{{ "Spaces: " + (5 - x.Aval) }}</p>
-        <button v-on:click="valueIncrement(index)">Remove</button>
+      <div v-show="showCartPage">
+        <div v-show="showDiv(index)" v-for="(x, index) in lessons">
+          <h1>{{x.subject}}</h1>
+          <p>{{x.location}}</p>
+          <p>{{x.price}}</p>
+          <p>{{ "Spaces: " + (5 - x.Aval) }}</p>
+          <button v-on:click="valueIncrement(index)">Remove</button>
+        </div>
       </div>
     </div>
 
@@ -34,6 +40,7 @@
         data() {
           return {
             lessons: lessons,
+            showCartPage: false,
           };
         },
         methods: {
@@ -50,6 +57,15 @@
           showDiv(index) {
             if (this.lessons[index].Aval < 5) {
               return true;
+            }
+          },
+          pageToggle() {
+            for (let index in this.lessons) {
+              if (this.showCartPage == false && this.lessons[index].Aval == 5) {
+              } else {
+                this.showCartPage = !this.showCartPage;
+                break;
+              }
             }
           },
         },
