@@ -8,21 +8,23 @@
   </head>
   <body>
     <div id="app">
-      <div v-for="x in lessions">
+      <div v-for="(x, index) in lessions">
         <h1>{{x.subject}}</h1>
         <p>{{x.location}}</p>
+        <p>{{index}}</p>
         <p>{{x.price}}</p>
         <p v-if="x.Aval >0">{{ "Spaces: " + x.Aval }}</p>
         <p v-else>No more avaliable items</p>
-        <button v-on:click="x.Aval--">Add to cart</button>
+        <button v-on:click="valueDecrement(index)">Add to cart</button>
       </div>
       <button v-on:click="console.log()">Checkout</button>
-      <div v-for="x in lessions">
+
+      <div v-for="(x, index) in lessions">
         <h1>{{x.subject}}</h1>
         <p>{{x.location}}</p>
         <p>{{x.price}}</p>
         <p>{{ "Spaces: " + (5 - x.Aval) }}</p>
-        <button v-on:click="x.Aval++">Remove</button>
+        <button v-on:click="valueIncrement(index)">Remove</button>
       </div>
     </div>
 
@@ -37,8 +39,19 @@
             ],
           };
         },
+        methods: {
+          valueDecrement(index) {
+            if (this.lessions[index].Aval > 0) {
+              this.lessions[index].Aval--;
+            }
+          },
+          valueIncrement(index) {
+            if (this.lessions[index].Aval < 5) {
+              this.lessions[index].Aval++;
+            }
+          },
+        },
       });
-
       app.mount("#app");
     </script>
   </body>
