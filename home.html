@@ -39,7 +39,8 @@
           />
           <input
             type="text"
-            requiredplaceholder="Phone Number"
+            required
+            placeholder="Phone Number"
             v-model="checkoutNumber"
           />
           <button type="submit" v-on:Click="checkoutSubmit()">Checkout</button>
@@ -90,6 +91,9 @@
               this.checkoutNumber == this.checkoutNumber.match(/^[0-9]+$/)
             ) {
               alert("Order submitted");
+            } else {
+              alert("Enter only letters in Name and number in Number.");
+              event.preventDefault();
             }
           },
         },
