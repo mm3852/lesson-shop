@@ -31,9 +31,18 @@
           <button v-on:click="valueIncrement(index)">Remove</button>
         </div>
         <form>
-          <input type="text" id="name" placeholder="Name" /><br />
-          <input type="text" id="number" placeholder="Phone Number" />
-          <input type="submit" value="Checkout" />
+          <input
+            type="text"
+            required
+            placeholder="Name"
+            v-model="checkoutName"
+          />
+          <input
+            type="text"
+            requiredplaceholder="Phone Number"
+            v-model="checkoutNumber"
+          />
+          <button type="submit" v-on:Click="checkoutSubmit()">Checkout</button>
         </form>
       </div>
     </div>
@@ -46,6 +55,8 @@
           return {
             lessons: lessons,
             showCartPage: false,
+            checkoutName: null,
+            checkoutNumber: null,
           };
         },
         methods: {
@@ -71,6 +82,14 @@
                 this.showCartPage = !this.showCartPage;
                 break;
               }
+            }
+          },
+          checkoutSubmit() {
+            if (
+              this.checkoutName == this.checkoutName.match(/^[a-zA-Z]+$/) &&
+              this.checkoutNumber == this.checkoutNumber.match(/^[0-9]+$/)
+            ) {
+              alert("Order submitted");
             }
           },
         },
