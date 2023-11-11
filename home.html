@@ -20,6 +20,37 @@
           <p v-else>No more avaliable items</p>
           <button v-on:click="valueDecrement(index)">Add to cart</button>
         </div>
+
+        <form>
+          <input
+            type="radio"
+            value="subject"
+            name="option"
+            v-on:Click="sortChoice('subject')"
+          />
+          <label>Subject</label>
+          <input
+            type="radio"
+            value="location"
+            name="option"
+            v-on:Click="sortChoice('location')"
+          />
+          <label>Location</label>
+          <input
+            type="radio"
+            value="price"
+            name="option"
+            v-on:Click="sortChoice('price')"
+          />
+          <label>Price</label>
+          <input
+            type="radio"
+            value="avalability"
+            name="option"
+            v-on:Click="sortChoice('Aval')"
+          />
+          <label>Avalability</label>
+        </form>
       </div>
 
       <div v-show="showCartPage">
@@ -54,6 +85,7 @@
       const app = Vue.createApp({
         data() {
           return {
+            ascendedOrder: true,
             lessons: lessons,
             showCartPage: false,
             checkoutName: null,
@@ -95,6 +127,16 @@
               alert("Enter only letters in Name and number in Number.");
               event.preventDefault();
             }
+          },
+          sortChoice(property) {
+            this.ascendedOrder = !this.ascendedOrder;
+            this.lessons.sort((a, b) => {
+              const valueA = a[property].toLowerCase();
+              const valueB = b[property].toLowerCase();
+              return this.ascendedOrder
+                ? valueA.localeCompare(valueB)
+                : valueB.localeCompare(valueA);
+            });
           },
         },
       });
