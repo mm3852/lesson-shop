@@ -11,7 +11,6 @@
       <div v-for="(x, index) in lessions">
         <h1>{{x.subject}}</h1>
         <p>{{x.location}}</p>
-        <p>{{index}}</p>
         <p>{{x.price}}</p>
         <p v-if="x.Aval >0">{{ "Spaces: " + x.Aval }}</p>
         <p v-else>No more avaliable items</p>
