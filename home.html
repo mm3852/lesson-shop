@@ -11,8 +11,9 @@
       <button v-on:click="pageToggle()">
         {{ showCartPage ? "Go to Lessons" : "Go to cart"}}
       </button>
+      <input type="search" placeholder="Search" v-model="searchQuery" />
       <div v-show="!showCartPage">
-        <div v-for="(x, index) in lessons">
+        <div v-for="(x, index) in Searching">
           <h1>{{x.subject}}</h1>
           <p>{{x.location}}</p>
           <p>{{x.price}}</p>
@@ -40,16 +41,33 @@
             type="radio"
             value="price"
             name="option"
-            v-on:Click="sortChoice('price')"
+            v-on:Click="sortNumber('price')"
           />
           <label>Price</label>
           <input
             type="radio"
             value="avalability"
             name="option"
-            v-on:Click="sortChoice('Aval')"
+            v-on:Click="sortNumber('Aval')"
           />
           <label>Avalability</label>
+        </form>
+
+        <form>
+          <input
+            type="radio"
+            value="subject"
+            name="ordering"
+            v-on:Click="sortOrdering(true)"
+          />
+          <label>Accending</label>
+          <input
+            type="radio"
+            value="location"
+            name="ordering"
+            v-on:Click="sortOrdering(false)"
+          />
+          <label>Deccending</label>
         </form>
       </div>
 
@@ -85,6 +103,8 @@
       const app = Vue.createApp({
         data() {
           return {
+            searchQuery: "",
+            sortProperty: 42,
             ascendedOrder: true,
             lessons: lessons,
             showCartPage: false,
@@ -129,14 +149,42 @@
             }
           },
           sortChoice(property) {
-            this.ascendedOrder = !this.ascendedOrder;
             this.lessons.sort((a, b) => {
               const valueA = a[property].toLowerCase();
               const valueB = b[property].toLowerCase();
+              this.sortProperty = property;
               return this.ascendedOrder
                 ? valueA.localeCompare(valueB)
                 : valueB.localeCompare(valueA);
             });
+          },
+          sortNumber(property) {
+            this.lessons.sort((a, b) => {
+              this.sortProperty = property;
+              return this.ascendedOrder
+                ? a[property] - b[property]
+                : b[property] - a[property];
+            });
+          },
+          sortOrdering(property) {
+            this.ascendedOrder = property;
+            return this.sortProperty === "subject" ||
+              this.sortProperty === "location"
+              ? this.sortChoice(this.sortProperty)
+              : this.sortNumber(this.sortProperty);
+          },
+        },
+        computed: {
+          Searching() {
+            return lessons.filter(
+              (lesson) =>
+                lesson.subject
+                  .toLowerCase()
+                  .includes(this.searchQuery.toLowerCase()) ||
+                lesson.location
+                  .toLowerCase()
+                  .includes(this.searchQuery.toLowerCase())
+            );
           },
         },
       });
