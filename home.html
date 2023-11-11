@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-  <div id="app">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <div v-for="x in lessions">
+        <h1>{{x.subject}}</h1>
+        <p>{{x.location}}</p>
+        <p>{{x.price}}</p>
+        <p v-if="x.Aval >0">{{ "Spaces: " + x.Aval }}</p>
+        <p v-else>No more avaliable items</p>
+        <button v-on:click="x.Aval--">Add to cart</button>
+      </div>
+      <button v-on:click="console.log()">Checkout</button>
+      <div v-for="x in lessions">
+        <h1>{{x.subject}}</h1>
+        <p>{{x.location}}</p>
+        <p>{{x.price}}</p>
+        <p>{{ "Spaces: " + (5 - x.Aval) }}</p>
+        <button v-on:click="x.Aval++">Remove</button>
+      </div>
+    </div>
 
-  <div v-for="x in lessions">
-    <h1>{{x.subject}}</h1>
-    <p>{{x.location}}</p>
-    <p>{{x.price}}</p>
-    <p v-if="x.Aval >0">{{ "Spaces:  " + x.Aval }} </p>
-    <p v-else>No more avaliable items</p> 
-    <button v-on:click="x.Aval--">Add to cart</button>
-  </div>
-  <button v-on:click="">Checkout</button>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            lessions: [
+              { subject: "Maths", location: "London", price: "£20", Aval: 5 },
+              { subject: "English", location: "London", price: "£20", Aval: 5 },
+            ],
+          };
+        },
+      });
 
-  </div>
-
-
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <script>
-    const app = Vue.createApp ({
-      data() {
-        return {
-          lessions: [	
-{subject: "Maths", location: "London", price: "£20", Aval : 5}, {subject: "English", location: "London", price: "£20", Aval : 5}
-      ]
-        }
-      }
-
-      
-    })
-
-    app.mount('#app')
-  </script>
-</body>
+      app.mount("#app");
+    </script>
+  </body>
 </html>
