@@ -13,7 +13,7 @@
       </button>
       <input type="search" placeholder="Search" v-model="searchQuery" />
       <div v-show="!showCartPage">
-        <div v-for="(x, index) in Searching">
+        <div v-for="(x, index) in searching">
           <h1>{{x.subject}}</h1>
           <p>{{x.location}}</p>
           <p>{{x.price}}</p>
@@ -175,8 +175,8 @@
           },
         },
         computed: {
-          Searching() {
-            return lessons.filter(
+          searching() {
+            return this.lessons.filter(
               (lesson) =>
                 lesson.subject
                   .toLowerCase()
