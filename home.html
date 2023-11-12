@@ -17,13 +17,14 @@
       <button class="buttonToggle" v-on:click="pageToggle()">
         {{ showCartPage ? "Go to Lessons" : "Go to cart"}}
       </button>
-      <input
-        type="search"
-        class="search"
-        placeholder="Search"
-        v-model="searchQuery"
-      />
+
       <div v-show="!showCartPage">
+        <input
+          type="search"
+          class="search"
+          placeholder="Search"
+          v-model="searchQuery"
+        />
         <div class="lessonBox" v-for="(x, index) in searching">
           <h1>{{x.subject}}</h1>
           <p>{{x.location}}</p>
