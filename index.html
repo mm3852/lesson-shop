@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <button class="buttonToggle" v-on:click="pageToggle()">
+        {{ showCartPage ? "Go to Lessons" : "Go to cart"}}
+      </button>
+
+      <div v-show="!showCartPage">
+        <input
+          type="search"
+          class="search"
+          placeholder="Search"
+          v-model="searchQuery"
+        />
+        <div class="lessonBox" v-for="(x, index) in searching">
+          <h1>{{x.subject}}</h1>
+          <p>{{x.location}}</p>
+          <p>£{{x.price}}</p>
+
+          <p v-if="x.Aval >0">{{ "Spaces: " + x.Aval }}</p>
+          <p v-else>No more avaliable items</p>
+          <i v-bind:class="x.icon"></i>
+          <button class="button" v-on:click="valueDecrement(index)">
+            Add to cart
+          </button>
+        </div>
+
+        <form class="ordering">
+          <label class="container"
+            >Subject
+            <input
+              type="radio"
+              value="subject"
+              name="option"
+              checked="checked"
+              v-on:Click="sortChoice('subject')"
+            />
+            <span class="checkmark"></span>
+          </label>
+          <label class="container"
+            >Location
+            <input
+              type="radio"
+              value="location"
+              name="option"
+              checked="checked"
+              v-on:Click="sortChoice('location')"
+            />
+            <span class="checkmark"></span>
+          </label>
+          <label class="container"
+            >Price
+            <input
+              type="radio"
+              value="price"
+              name="option"
+              checked="checked"
+              v-on:Click="sortNumber('price')"
+            />
+            <span class="checkmark"></span>
+          </label>
+          <label class="container"
+            >Avalability
+            <input
+              type="radio"
+              value="avalability"
+              name="option"
+              checked="checked"
+              v-on:Click="sortNumber('Aval')"
+            />
+            <span class="checkmark"></span>
+          </label>
+        </form>
+
+        <form class="orderingChoose">
+          <label class="container"
+            >Deccending
+            <input
+              type="radio"
+              value="location"
+              checked="checked"
+              name="ordering"
+              v-on:Click="sortOrdering(false)"
+            />
+            <span class="checkmark"></span>
+          </label>
+          <label class="container"
+            >Accending
+            <input
+              type="radio"
+              checked="checked"
+              value="subject"
+              name="ordering"
+              v-on:Click="sortOrdering(true)"
+            />
+            <span class="checkmark"></span>
+          </label>
+        </form>
+      </div>
+
+      <div v-show="showCartPage">
+        <div
+          class="lessonBox"
+          v-show="showDiv(index)"
+          v-for="(x, index) in lessons"
+        >
+          <h1>{{x.subject}}</h1>
+          <p>{{x.location}}</p>
+          <p>{{x.price}}</p>
+          <p>{{ "Spaces: " + (5 - x.Aval) }}</p>
+          <i v-bind:class="x.icon"></i>
+          <button class="button" v-on:click="valueIncrement(index)">
+            Remove
+          </button>
+        </div>
+        <form>
+          <input
+            type="text"
+            class="checkoutInput"
+            required
+            placeholder="Name"
+            v-model="checkoutName"
+          />
+          <input
+            type="text"
+            class="checkoutInput"
+            required
+            placeholder="Phone Number"
+            v-model="checkoutNumber"
+          />
+          <button
+            class="checkoutButton"
+            type="submit"
+            v-on:Click="checkoutSubmit()"
+          >
+            Checkout
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="module">
+      import lessons from "./lessons.js";
+
+      const app = Vue.createApp({
+        data() {
+          return {
+            searchQuery: "",
+            sortProperty: 42,
+            ascendedOrder: true,
+            lessons: lessons,
+            showCartPage: false,
+            checkoutName: null,
+            checkoutNumber: null,
+          };
+        },
+        methods: {
+          valueDecrement(index) {
+            if (this.lessons[index].Aval > 0) {
+              this.lessons[index].Aval--;
+            }
+          },
+          valueIncrement(index) {
+            if (this.lessons[index].Aval < 5) {
+              this.lessons[index].Aval++;
+            }
+          },
+          showDiv(index) {
+            if (this.lessons[index].Aval < 5) {
+              return true;
+            }
+          },
+          pageToggle() {
+            for (let index in this.lessons) {
+              if (this.showCartPage == false && this.lessons[index].Aval == 5) {
+              } else {
+                this.showCartPage = !this.showCartPage;
+                break;
+              }
+            }
+          },
+          checkoutSubmit() {
+            if (true) {
+              for (let index in this.lessons) {
+                if (this.lessons[index].Aval < 5) {
+                  if (
+                    this.checkoutName ==
+                      this.checkoutName.match(/^[a-zA-Z]+$/) &&
+                    this.checkoutNumber == this.checkoutNumber.match(/^[0-9]+$/)
+                  ) {
+                    alert("Order submitted");
+                    return true;
+                    break;
+                  } else {
+                    alert("Enter only letters in Name and number in Number.");
+                    event.preventDefault();
+                    break;
+                  }
+                }
+              }
+            }
+            alert("No order submitted");
+            event.preventDefault();
+          },
+          sortChoice(property) {
+            this.lessons.sort((a, b) => {
+              const valueA = a[property].toLowerCase();
+              const valueB = b[property].toLowerCase();
+              this.sortProperty = property;
+              return this.ascendedOrder
+                ? valueA.localeCompare(valueB)
+                : valueB.localeCompare(valueA);
+            });
+          },
+          sortNumber(property) {
+            this.lessons.sort((a, b) => {
+              this.sortProperty = property;
+              return this.ascendedOrder
+                ? a[property] - b[property]
+                : b[property] - a[property];
+            });
+          },
+          sortOrdering(property) {
+            this.ascendedOrder = property;
+            return this.sortProperty === "subject" ||
+              this.sortProperty === "location"
+              ? this.sortChoice(this.sortProperty)
+              : this.sortNumber(this.sortProperty);
+          },
+        },
+        computed: {
+          searching() {
+            return this.lessons.filter(
+              (lesson) =>
+                lesson.subject
+                  .toLowerCase()
+                  .includes(this.searchQuery.toLowerCase()) ||
+                lesson.location
+                  .toLowerCase()
+                  .includes(this.searchQuery.toLowerCase())
+            );
+          },
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>
