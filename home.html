@@ -86,17 +86,6 @@
 
         <form class="orderingChoose">
           <label class="container"
-            >Accending
-            <input
-              type="radio"
-              checked="checked"
-              value="subject"
-              name="ordering"
-              v-on:Click="sortOrdering(true)"
-            />
-            <span class="checkmark"></span>
-          </label>
-          <label class="container"
             >Deccending
             <input
               type="radio"
@@ -104,6 +93,17 @@
               checked="checked"
               name="ordering"
               v-on:Click="sortOrdering(false)"
+            />
+            <span class="checkmark"></span>
+          </label>
+          <label class="container"
+            >Accending
+            <input
+              type="radio"
+              checked="checked"
+              value="subject"
+              name="ordering"
+              v-on:Click="sortOrdering(true)"
             />
             <span class="checkmark"></span>
           </label>
