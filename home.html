@@ -14,10 +14,15 @@
   </head>
   <body>
     <div id="app">
-      <button v-on:click="pageToggle()">
+      <button class="buttonToggle" v-on:click="pageToggle()">
         {{ showCartPage ? "Go to Lessons" : "Go to cart"}}
       </button>
-      <input type="search" placeholder="Search" v-model="searchQuery" />
+      <input
+        type="search"
+        class="search"
+        placeholder="Search"
+        v-model="searchQuery"
+      />
       <div v-show="!showCartPage">
         <div class="lessonBox" v-for="(x, index) in searching">
           <h1>{{x.subject}}</h1>
@@ -27,57 +32,81 @@
           <p v-if="x.Aval >0">{{ "Spaces: " + x.Aval }}</p>
           <p v-else>No more avaliable items</p>
           <i v-bind:class="x.icon"></i>
-          <button class="cartButton" v-on:click="valueDecrement(index)">
+          <button class="button" v-on:click="valueDecrement(index)">
             Add to cart
           </button>
         </div>
 
-        <form>
-          <input
-            type="radio"
-            value="subject"
-            name="option"
-            v-on:Click="sortChoice('subject')"
-          />
-          <label>Subject</label>
-          <input
-            type="radio"
-            value="location"
-            name="option"
-            v-on:Click="sortChoice('location')"
-          />
-          <label>Location</label>
-          <input
-            type="radio"
-            value="price"
-            name="option"
-            v-on:Click="sortNumber('price')"
-          />
-          <label>Price</label>
-          <input
-            type="radio"
-            value="avalability"
-            name="option"
-            v-on:Click="sortNumber('Aval')"
-          />
-          <label>Avalability</label>
+        <form class="ordering">
+          <label class="container"
+            >Subject
+            <input
+              type="radio"
+              value="subject"
+              name="option"
+              checked="checked"
+              v-on:Click="sortChoice('subject')"
+            />
+            <span class="checkmark"></span>
+          </label>
+          <label class="container"
+            >Location
+            <input
+              type="radio"
+              value="location"
+              name="option"
+              checked="checked"
+              v-on:Click="sortChoice('location')"
+            />
+            <span class="checkmark"></span>
+          </label>
+          <label class="container"
+            >Price
+            <input
+              type="radio"
+              value="price"
+              name="option"
+              checked="checked"
+              v-on:Click="sortNumber('price')"
+            />
+            <span class="checkmark"></span>
+          </label>
+          <label class="container"
+            >Avalability
+            <input
+              type="radio"
+              value="avalability"
+              name="option"
+              checked="checked"
+              v-on:Click="sortNumber('Aval')"
+            />
+            <span class="checkmark"></span>
+          </label>
         </form>
 
-        <form>
-          <input
-            type="radio"
-            value="subject"
-            name="ordering"
-            v-on:Click="sortOrdering(true)"
-          />
-          <label>Accending</label>
-          <input
-            type="radio"
-            value="location"
-            name="ordering"
-            v-on:Click="sortOrdering(false)"
-          />
-          <label>Deccending</label>
+        <form class="orderingChoose">
+          <label class="container"
+            >Accending
+            <input
+              type="radio"
+              checked="checked"
+              value="subject"
+              name="ordering"
+              v-on:Click="sortOrdering(true)"
+            />
+            <span class="checkmark"></span>
+          </label>
+          <label class="container"
+            >Deccending
+            <input
+              type="radio"
+              value="location"
+              checked="checked"
+              name="ordering"
+              v-on:Click="sortOrdering(false)"
+            />
+            <span class="checkmark"></span>
+          </label>
         </form>
       </div>
 
@@ -91,22 +120,33 @@
           <p>{{x.location}}</p>
           <p>{{x.price}}</p>
           <p>{{ "Spaces: " + (5 - x.Aval) }}</p>
-          <button v-on:click="valueIncrement(index)">Remove</button>
+          <i v-bind:class="x.icon"></i>
+          <button class="button" v-on:click="valueIncrement(index)">
+            Remove
+          </button>
         </div>
         <form>
           <input
             type="text"
+            class="checkoutInput"
             required
             placeholder="Name"
             v-model="checkoutName"
           />
           <input
             type="text"
+            class="checkoutInput"
             required
             placeholder="Phone Number"
             v-model="checkoutNumber"
           />
-          <button type="submit" v-on:Click="checkoutSubmit()">Checkout</button>
+          <button
+            class="checkoutButton"
+            type="submit"
+            v-on:Click="checkoutSubmit()"
+          >
+            Checkout
+          </button>
         </form>
       </div>
     </div>
