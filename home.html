@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
+
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
   <body>
     <div id="app">
@@ -13,13 +19,17 @@
       </button>
       <input type="search" placeholder="Search" v-model="searchQuery" />
       <div v-show="!showCartPage">
-        <div v-for="(x, index) in searching">
+        <div class="lessonBox" v-for="(x, index) in searching">
           <h1>{{x.subject}}</h1>
           <p>{{x.location}}</p>
           <p>{{x.price}}</p>
+
           <p v-if="x.Aval >0">{{ "Spaces: " + x.Aval }}</p>
           <p v-else>No more avaliable items</p>
-          <button v-on:click="valueDecrement(index)">Add to cart</button>
+          <i class="fa fa-minus-circle" style="font-size: 36px"></i>
+          <button class="cartButton" v-on:click="valueDecrement(index)">
+            Add to cart
+          </button>
         </div>
 
         <form>
@@ -100,6 +110,7 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script type="module">
       import lessons from "./lessons.js";
+
       const app = Vue.createApp({
         data() {
           return {

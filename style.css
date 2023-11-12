@@ -1,0 +1,12 @@
+.lessonBox {
+    border: 0.2em solid rgb(45, 177, 218);
+    border-radius: 1em;
+    padding: 1em;
+    margin: auto;
+    margin-bottom: 1em;
+    width: 20em;
+}
+
+.cartButton {
+   margin-left: 15em;
+}
