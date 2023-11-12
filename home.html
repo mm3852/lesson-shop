@@ -194,15 +194,27 @@
             }
           },
           checkoutSubmit() {
-            if (
-              this.checkoutName == this.checkoutName.match(/^[a-zA-Z]+$/) &&
-              this.checkoutNumber == this.checkoutNumber.match(/^[0-9]+$/)
-            ) {
-              alert("Order submitted");
-            } else {
-              alert("Enter only letters in Name and number in Number.");
-              event.preventDefault();
+            if (true) {
+              for (let index in this.lessons) {
+                if (this.lessons[index].Aval < 5) {
+                  if (
+                    this.checkoutName ==
+                      this.checkoutName.match(/^[a-zA-Z]+$/) &&
+                    this.checkoutNumber == this.checkoutNumber.match(/^[0-9]+$/)
+                  ) {
+                    alert("Order submitted");
+                    return true;
+                    break;
+                  } else {
+                    alert("Enter only letters in Name and number in Number.");
+                    event.preventDefault();
+                    break;
+                  }
+                }
+              }
             }
+            alert("No order submitted");
+            event.preventDefault();
           },
           sortChoice(property) {
             this.lessons.sort((a, b) => {
