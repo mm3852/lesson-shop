@@ -260,7 +260,7 @@
           },
           async fetchLessons() {
             try {
-              const response = await fetch("/api/lessons");
+              const response = await fetch("Lesson-shop-env.eba-a9ygfdpz.us-east-1.elasticbeanstalk.com/api/lessons");
               const data = await response.json();
               this.lessons = data;
               this.lessons = data.map((lesson) => ({
