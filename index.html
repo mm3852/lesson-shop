@@ -215,7 +215,7 @@
             };
             console.log(orderData.lessons);
 
-            fetch("http://localhost:3000/api/orders", {
+            fetch("http://lesson-shop-env.eba-a9ygfdpz.us-east-1.elasticbeanstalk.com//api/orders", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -260,7 +260,7 @@
           },
           async fetchLessons() {
             try {
-              const response = await fetch("Lesson-shop-env.eba-a9ygfdpz.us-east-1.elasticbeanstalk.com/api/lessons");
+              const response = await fetch("http://lesson-shop-env.eba-a9ygfdpz.us-east-1.elasticbeanstalk.com/api/lessons");
               const data = await response.json();
               this.lessons = data;
               this.lessons = data.map((lesson) => ({
