@@ -8,11 +8,13 @@
  <Lesson :lessons="lessons"></Lesson>
  </div>
   <div v-show="showCartPage">
- <ordering :lessons="lessons"></ordering>
+ <Ordering :lessons="lessons"></Ordering>
  </div>
 </template>
 
 <script >
+
+
 export default {
  data() {
   return {
@@ -64,6 +66,3 @@ export default {
 }
 </script>
 
-<style>
-/* Your existing styles here */
-</style>

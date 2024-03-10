@@ -5,7 +5,7 @@
           placeholder="Search"
           v-model="searchQuery"
         />
-  <div class="lessonBox" v-for="(x, index) in searching">
+  <div class="lessonBox" v-for="(x, index)  in searching" :key="index">
           <h1>{{x.subject}}</h1>
           <p>{{x.location}}</p>
           <p>£{{x.price}}</p>

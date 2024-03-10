@@ -2,7 +2,7 @@
  <div
           class="lessonBox"
           v-show="showDiv(index)"
-          v-for="(x, index) in lessons"
+          v-for="(x, index) in lessons" :key="index"
         >
           <h1>{{x.subject}}</h1>
           <p>{{x.location}}</p>
