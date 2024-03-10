@@ -1,29 +1,7 @@
-# shopping
+# lesson-shop
 
-This template should help get you started developing with Vue 3 in Vite.
+The front-end of the app which will will allow users to book lessons.
 
-## Recommended IDE Setup
+# [link to front-end GitHub repository](https://github.com/mm3852/lesson-shop.git)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+# [link to GitHub page](https://mm3852.github.io/lesson-shop/)
