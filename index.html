@@ -226,23 +226,22 @@
               .then((data) => {
                 console.log(data);
                 alert(data.message);
-                console.log(JSON.stringify(orderData.lessons[0]._id) + "test")
+                console.log(JSON.stringify(orderData.lessons[0]._id) + "test");
                 return fetch(`/api/lessons/${orderData.lessons[0]._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-          
-          Aval: this.lesson.Aval - orderData.lessons[0].Aval,
-        }),
-      });
+                  method: "PUT",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    Aval: this.lesson.Aval - orderData.lessons[0].Aval,
+                  }),
+                });
               })
               .then((updateResponse) => updateResponse.json())
-  .then((updateData) => {
-    console.log(updateData);
-    alert(updateData.message);
-  })
+              .then((updateData) => {
+                console.log(updateData);
+                alert(updateData.message);
+              })
               .catch((error) => {
                 console.error("Error submitting order:", error);
                 alert("Error submitting order. Please try again.");
@@ -276,7 +275,9 @@
           },
           async fetchLessons() {
             try {
-              const response = await fetch("http://lesson-shop-env.eba-a9ygfdpz.us-east-1.elasticbeanstalk.com/api/lessons");
+              const response = await fetch(
+                "http://lesson-shop-env.eba-a9ygfdpz.us-east-1.elasticbeanstalk.com/api/lessons"
+              );
               const data = await response.json();
               this.lessons = data;
               this.lessons = data.map((lesson) => ({
