@@ -1,4 +1,5 @@
 <template>
+
      <input
           type="search"
           class="search"

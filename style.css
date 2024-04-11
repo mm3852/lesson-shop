@@ -6,6 +6,7 @@
     margin-bottom: 1em;
     width: 20em;
     height: 13em;
+     margin-top: 2em;
 }
 
 .cartButton {
@@ -36,6 +37,7 @@
     display: inline-block;
     font-size: 1.5em;
     cursor: pointer;
+    
 }
 
 .buttonToggle {
@@ -52,6 +54,7 @@
 }
 
 .checkoutButton {
+       
     background-color: #a7247b;
     border: none;
     color: white;
@@ -69,19 +72,21 @@
     padding: 12px 20px;
     display: block;
     margin-left: auto;
-    margin-right: auto;
+
     box-sizing: border-box;
     text-align: center;
-    margin-top: -2em;
-    margin-bottom: 2em;
+    margin-top: -3em;
+   
 
 }
 
 .checkoutInput {
+        margin-top: 2em;
     width: 40%;
     padding: 12px 20px;
     margin: 8px 1em;
     box-sizing: border-box;
+
 }
 
 
@@ -93,6 +98,9 @@
     margin-bottom: 12px;
     cursor: pointer;
     font-size: 22px;
+    
+   
+
 
 }
 
@@ -147,14 +155,14 @@
 }
 
 .ordering {
-    margin: 0;
-    position: absolute;
-    top: 50%;
+
+    position: relative;
+  
 
 }
 
 .orderingChoose {
-    margin: 0;
-    position: absolute;
-    top: 70%;
+
+    position: relative;
+
 }

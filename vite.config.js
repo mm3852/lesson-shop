@@ -9,13 +9,14 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       manifest: {
-        theme_color: "#ffffff",
+        theme_color: "#8936FF",
+        background_color: "#2EC6FE",
         icons: [
           {
-            src: "/public.favicon.ico",
-            size: "512x512",
-            type: "image/ico",
             purpose: "any maskable",
+            sizes: "512x512",
+            src: "icon512_maskable.png",
+            type: "image/png",
           },
         ],
       },
@@ -26,5 +27,5 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
-  base: "/",
+  base: "/lesson-shop",
 });

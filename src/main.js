@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import App from "./App.vue";
+
 import Lesson from "./components/Lesson.vue";
 import Ordering from "./components/Ordering.vue";
 const app = createApp(App);
