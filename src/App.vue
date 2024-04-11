@@ -47,7 +47,12 @@ export default {
    async fetchLessons() {
             try {
               const response = await fetch(
-                "https://lesson-shop-env.eba-a9ygfdpz.us-east-1.elasticbeanstalk.com/api/lessons"
+                "https://lesson-shop-env.eba-a9ygfdpz.us-east-1.elasticbeanstalk.com/api/lessons", {
+                  headers: {
+                    'Origin': 'http://lesson-shop-env.eba-a9ygfdpz.us-east-1.elasticbeanstalk.com'
+                  }
+                }
+                
               );
               const data = await response.json();
               this.lessons = data;
