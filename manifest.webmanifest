@@ -1,1 +1,1 @@
-{"name":"shopping","short_name":"shopping","start_url":"/lesson-shop/","display":"standalone","background_color":"#ffffff","lang":"en","scope":"/lesson-shop/","theme_color":"#ffffff","icons":[{"src":"/public.favicon.ico","size":"512x512","type":"image/ico","purpose":"any maskable"}]}
+{"name":"shopping","short_name":"shopping","start_url":"/lesson-shop/","display":"standalone","background_color":"#ffffff","lang":"en","scope":"/lesson-shop/","theme_color":"#ffffff","icons":[{"src":"/public/icon.png","size":"512x512","type":"image/png","purpose":"any maskable"}]}
